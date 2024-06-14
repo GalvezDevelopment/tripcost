@@ -7,23 +7,34 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/tripcost",
         "index": "apps/tripcost/src/index.html",
         "main": "apps/tripcost/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/tripcost/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/tripcost/public"
+            "input": "apps/tripcost/public",
+            "output": "."
           }
         ],
-        "styles": ["apps/tripcost/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "apps/tripcost/src/styles.scss"
+        ],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/tripcost/webpack.config.js"
+        },
+        "commonChunk": false
       },
       "configurations": {
         "production": {
@@ -39,7 +50,10 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/tripcost/webpack.prod.config.js"
+          }
         },
         "development": {
           "buildOptimizer": false,
@@ -53,7 +67,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "tripcost:build:production"
@@ -62,12 +76,17 @@
           "buildTarget": "tripcost:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      }
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "ngx-build-plus:extract-i18n",
       "options": {
-        "buildTarget": "tripcost:build"
+        "buildTarget": "tripcost:build",
+        "extraWebpackConfig": "apps/tripcost/webpack.config.js"
       }
     },
     "lint": {
@@ -75,7 +94,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/tripcost/jest.config.ts"
       }

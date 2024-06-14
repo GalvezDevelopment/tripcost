@@ -8,13 +8,17 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@galvezco/domain-tests": ["apps/libs/domain-tests/src/index.ts"],
+      "@galvezco/domain": ["apps/libs/domain/src/index.ts"],
+      "@galvezco/shared-ui": ["apps/libs/shared-ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
