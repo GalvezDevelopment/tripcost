@@ -1,0 +1,19 @@
+{
+  "name": "tripcost-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/libs/tripcost-domain/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/libs/tripcost-domain",
+        "main": "apps/libs/tripcost-domain/src/index.ts",
+        "tsConfig": "apps/libs/tripcost-domain/tsconfig.lib.json",
+        "assets": ["apps/libs/tripcost-domain/*.md"]
+      }
+    }
+  }
+}

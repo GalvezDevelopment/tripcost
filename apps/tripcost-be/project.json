@@ -1,0 +1,41 @@
+{
+  "name": "tripcost-be",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tripcost-be/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tripcost-be:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tripcost-be:build:development"
+        },
+        "production": {
+          "buildTarget": "tripcost-be:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/tripcost-be/jest.config.ts"
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/tripcost-be",
+        "main": "apps/tripcost-be/src/main.ts",
+        "tsConfig": "apps/tripcost-be/tsconfig.app.json",
+        "assets": []
+      }
+    }
+  }
+}

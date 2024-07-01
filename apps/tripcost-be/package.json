@@ -1,0 +1,7 @@
+{
+  "name": "@galvezco/tripcost-be",
+  "version": "0.0.1",
+  "dependencies": {
+    "@galvezco/tripcost-domain": "^1.0.0"
+  }
+}
