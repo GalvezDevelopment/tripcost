@@ -1,14 +1,12 @@
 import {
+  ApiPromise,
   ServerError,
   Trip,
   TripError,
   TripService,
   TripsRepository,
-} from '@galvezco/domain';
-import {
-  ApiPromise,
   createApiPromiseFrom,
-} from 'apps/libs/domain/src/lib/aggregates/api-response.aggregate';
+} from '@galvezco/tripcost-domain';
 
 class TripsRepositoryImp implements TripsRepository {
   create(newTrip: Trip): ApiPromise<Trip> {
